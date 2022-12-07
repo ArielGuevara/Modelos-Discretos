@@ -6,7 +6,7 @@ def ecuaciones(int_valor):
     """Genera las ecuaciones a resolver
 
     Args:
-        int_valor (int): es en valor que  designara que ecuacion se uasara
+        int_valor (int): es en valor que  designara que ecuacion se usara
 
     Returns:
         _type_: retorna un float que es la respuesta de la ecuacion
@@ -79,28 +79,33 @@ def jugarDeNuevo():
 #esta es la función principal
 #*********************************
 if __name__  == '__main__':
-    #declaracion de la variale via
+    #declaracion de la variale vida
     vida = float(0)
     #declaracion de la variable rondas
     rondas = float(0)
+    #Declaracionde la variable numRondas
+    numRondas = int(1)
     #ingreso de nombre
     nombre = input("Ingrese su nombre: ")
     #while se ejecuta mientras se cumpla una de las proposiciones
     while (vida < 3) and (rondas < 10):
         #se genera numero randomico el cual elige que ecuacion se resolvera
         rand = random.randint(0,8)
+        print("\t\t  Ronda #"+str(numRondas)+" de 10")
+        #llamamos ala funcion que genera las ecuaciones
         valor = ecuaciones(rand)
         #captura de algun tipo de error
         try: 
             respuesta = float(input("Ingrese su respuesta: "))
         except:
             print("\t\t*Debes ingresar numeros*")
-            valor = ecuaciones(rand)
+            #valor = ecuaciones(rand)
             respuesta = float(input("Ingrese su respuesta: "))
         #valida si es correcta la respuesta
         if(valor == respuesta):
             print("Correcto "+nombre+ ", pasas a la siguiente ronda")
             rondas += 1
+            numRondas += 1
         else:
             print("Incorrecto "+nombre+ ", intentalo otra vez")
             vida += 1
@@ -111,10 +116,12 @@ if __name__  == '__main__':
         print("Ganaste terminaste las 10 rondas")
 
     while jugarDeNuevo():#validamoso si queremos volver a jugar
-        #declaracion de la variale via
+        #declaracion de la variale vida
         vida = float(0)
         #declaracion de la variable rondas
         rondas = float(0)
+        #Declaracionde la variable numRondas
+        numRondas = int(1)
         #ingreso de nombre
         nombre = input("Ingrese su nombre: ")
         #while se ejecuta mientras se cumpla una de las proposiciones
@@ -141,9 +148,9 @@ if __name__  == '__main__':
         if(vida == 3):
             print("te quedaste sin vidas")
         else:
-            print("Ganaste terminaste als 10 rondas")
+            print("Ganaste terminaste las 10 rondas")
 
 
-#**********************************
-#Aqui termina la funcion principal
-#**********************************
+#**************************************
+#  Aqui termina la funcion principal  *
+#**************************************
