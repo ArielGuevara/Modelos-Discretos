@@ -1,3 +1,15 @@
+"""
+    Es un juego que, a partir de plantillas de ecuaciones, genera numeros
+    randomicos en sus variables para que el jugador vaya resolviendo la
+    ecuacion y pueda escribir la respuesta que obtuvo al operarla.
+    Requisitos:
+        Tener conocimientos previos de algebra.
+        Conocer sobre la jerarquia de operadores.
+
+    Autoor: Ariel Guevara
+
+    version 1.3
+"""
 #libreria random
 import random
 
@@ -76,46 +88,10 @@ def jugarDeNuevo():
     
 
 #*********************************
-#esta es la función principal
+#  Esta es la función principal  *
 #*********************************
 if __name__  == '__main__':
-    #declaracion de la variale vida
-    vida = float(0)
-    #declaracion de la variable rondas
-    rondas = float(0)
-    #Declaracionde la variable numRondas
-    numRondas = int(1)
-    #ingreso de nombre
-    nombre = input("Ingrese su nombre: ")
-    #while se ejecuta mientras se cumpla una de las proposiciones
-    while (vida < 3) and (rondas < 10):
-        #se genera numero randomico el cual elige que ecuacion se resolvera
-        rand = random.randint(0,8)
-        print("\t\t  Ronda #"+str(numRondas)+" de 10")
-        #llamamos ala funcion que genera las ecuaciones
-        valor = ecuaciones(rand)
-        #captura de algun tipo de error
-        try: 
-            respuesta = float(input("Ingrese su respuesta: "))
-        except:
-            print("\t\t*Debes ingresar numeros*")
-            #valor = ecuaciones(rand)
-            respuesta = float(input("Ingrese su respuesta: "))
-        #valida si es correcta la respuesta
-        if(valor == respuesta):
-            print("Correcto "+nombre+ ", pasas a la siguiente ronda")
-            rondas += 1
-            numRondas += 1
-        else:
-            print("Incorrecto "+nombre+ ", intentalo otra vez")
-            vida += 1
-    #cuando llega al maximo de sus vidas
-    if(vida == 3):
-        print("te quedaste sin vidas")
-    else:
-        print("Ganaste terminaste las 10 rondas")
-
-    while jugarDeNuevo():#validamoso si queremos volver a jugar
+    while True:
         #declaracion de la variale vida
         vida = float(0)
         #declaracion de la variable rondas
@@ -126,31 +102,37 @@ if __name__  == '__main__':
         nombre = input("Ingrese su nombre: ")
         #while se ejecuta mientras se cumpla una de las proposiciones
         while (vida < 3) and (rondas < 10):
-            #se genera numero randomico el cual elige que ecuacion se reslvera
+            #se genera numero randomico el cual elige que ecuacion se resolvera
             rand = random.randint(0,8)
-            #llamado a las ecuaciones
+            print("\t\t  Ronda #"+str(numRondas)+" de 10")
+            #llamamos ala funcion que genera las ecuaciones
             valor = ecuaciones(rand)
             #captura de algun tipo de error
             try: 
                 respuesta = float(input("Ingrese su respuesta: "))
             except:
                 print("\t\t*Debes ingresar numeros*")
-                valor = ecuaciones(rand)
+                #valor = ecuaciones(rand)
                 respuesta = float(input("Ingrese su respuesta: "))
-
+            #valida si es correcta la respuesta
             if(valor == respuesta):
                 print("Correcto "+nombre+ ", pasas a la siguiente ronda")
                 rondas += 1
+                numRondas += 1
             else:
                 print("Incorrecto "+nombre+ ", intentalo otra vez")
+                print("La respuesta era " + str(valor))
                 vida += 1
-
+        #cuando llega al maximo de sus vidas
         if(vida == 3):
             print("te quedaste sin vidas")
         else:
             print("Ganaste terminaste las 10 rondas")
+        if(jugarDeNuevo() == False):
+            print("Gracias por jugar")
+            break
 
-
+    #while jugarDeNuevo():#validamoso si queremos volver a jugar
 #**************************************
 #  Aqui termina la funcion principal  *
 #**************************************
